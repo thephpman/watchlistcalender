@@ -1,0 +1,20 @@
+def main():
+    url = "http://192.168.0.2:8080/jsonrpc"
+
+    # Example echo method
+    payload = {"jsonrpc": "2.0", "method": "Player.GetItem", "params": { "properties": ["title", "album", "artist", "season", "episode", "duration", "showtitle", "tvshowid", "thumbnail", "file", "fanart", "streamdetails"], "playerid": 1 }, "id": "VideoGetItem"}
+    response = requests.post(url, json=payload).json()
+    # print(json.dumps(response['result'], indent=4))
+    with open('response.json', 'w') as outfile:
+        json.dump(response['result'], outfile)
+def now_playing(currently_watching playing_season, playing_epoisode):
+    with open('response.json') as playing_now:
+        read_content = json.load(playing_now)
+        showname_detail = read_content['item']
+        showname = showname_detail['showtitle']
+        season = showname_detail['season']
+        episode = showname_detail['episode']
+        currently_watching = showname
+        playing_season = season
+        playing_epoisode = episode
+        return print("Currently Playing {} Season {} Episode {}".format(currently_watching, playing_season, playing_epoisode))
