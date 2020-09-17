@@ -1,4 +1,3 @@
-from flask import Flask
 import requests
 import json
 
@@ -27,20 +26,7 @@ def what_in_kodi():
         playing_season = season
         playing_epoisode = episode
         return("Currently Playing {} Season {} Episode {}".format(currently_watching, playing_season, playing_epoisode))
-# if __name__ == "__main__":
-#     what_in_kodi()
+if __name__ == "__main__":
+    what_in_kodi()
 now_playing = what_in_kodi()
 print(now_playing)
-
-app = Flask(__name__)
-
-# Initially installed flask and create a basic webserver using flsk
-@app.route('/')
-def index():
-    return 'Index Page'
-
-@app.route('/modules')
-def hello():
-    return print(now_playing)
-if __name__ == '__main__':
-    app.run(debug=True)
