@@ -6,7 +6,7 @@ currently thinking about flask and django. Although I have to learn it.
 ##### Questions I have now:
 - [x] How to i send this data to my google calender ? (maybe Google calender api!) 
      ##### New problem arise:
-     -[ ] Although i am able to push my watched episode to calender but i am only 
+     - [ ] Although i am able to push my watched episode to calender but i am only 
 able to send the system current time, I need to learn how can i pass the actual playing time 
 and playing duration time. So that if my script sun at the middle of the episode it will grab the start time and actual ending time and send those
 to google calender. 
