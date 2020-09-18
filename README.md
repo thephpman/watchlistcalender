@@ -4,7 +4,7 @@ Initially some random testing code.
 After a full functioning raw code my plan is to convert this hole project to a full responsive calender program. 
 currently thinking about flask and django. Although I have to learn it. 
 ##### Questions I have now:
--[x] How to i send this data to my google calender ? (maybe Google calender api!) 
+- [x] How to i send this data to my google calender ? (maybe Google calender api!) 
      ##### New problem arise:
      -[ ] Although i am able to push my watched episode to calender but i am only 
 able to send the system current time, I need to learn how can i pass the actual playing time 
