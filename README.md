@@ -12,7 +12,23 @@ and playing duration time. So that if my script sun at the middle of the episode
 to google calender. 
 * Should i store those to a database or i just send them on the fly ? 
 * From when to when I watched that episode and add those entry to my google calender event! (maybe i should use kodis default request parameter)
-
+* Re structure the folder stucture like this. 
+```
+Project/
+    |-- bin/
+    |   |-- project
+    |
+    |-- project/
+    |   |-- test/
+    |   |   |-- __init__.py
+    |   |   |-- test_main.py
+    |   |   
+    |   |-- __init__.py
+    |   |-- main.py
+    |
+    |-- setup.py
+    |-- README
+```
 ##### Currently my program can do:
 * Retrive what is playing on my kodi and display them as playing {Serise Name} {Serise season} {Episode}
 * User authanication using google api
