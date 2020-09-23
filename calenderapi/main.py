@@ -8,6 +8,7 @@ from google.auth.transport.requests import Request
 import requests
 import json
 from datetime import datetime, timedelta
+
 # from datetime import date
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/calendar']
@@ -29,17 +30,48 @@ def what_in_kodi():
         showname = showname_detail['showtitle']
         season = showname_detail['season']
         episode = showname_detail['episode']
+        duration_list = showname_detail['streamdetails']['video']
+        list_duration = list(duration_list[0].values())
         # return showname, season, episode
+
         # here i am retuning the now playig data as a scring with custom formating
         return("You Watched {} Season {} Episode {}".format(showname, season, episode))
 
-# current time function, this return the date time as a iso formate, this is neccessary to push the valid formate to google api
-def current_Time():
-    my_date = datetime.now()
-    return my_date.isoformat()
+# For now this function is not needed
+# Converting seconds to minute
+# def convert_timedelta(duration):
+#     days, seconds = duration.days, duration.seconds
+#     # hours = days * 24 + seconds // 3600
+#     minutes = (seconds % 3600) // 60
+#     seconds = (seconds % 60)
+#     return minutes, seconds
+
 # similar code by this time i am adding 30 minute to my current time. as it's the lenght of the episode i am now playing
-def appro_Watchtime():
-    approwatchtime = datetime.now() + timedelta(hours=0.5)
+def time():
+    with open('response.json') as playing_now:
+        read_content = json.load(playing_now)
+        showname_detail = read_content['item']
+        duration_list = showname_detail['streamdetails']['video']
+        list_duration = list(duration_list[0].values())
+        duration = list_duration[2]
+        return duration
+
+# Testing the time delta function
+# print(str(timedelta(seconds=time())))
+
+# td = timedelta(0, 3000)
+# minutes, seconds = convert_timedelta(td)
+# print('{} minutes, {} seconds'.format(minutes, seconds))
+
+# current time function, this return the date time as a iso formate, this is neccessary to push the valid formate to google api
+def current_time():
+    my_date = datetime.now()
+    # print(my_date)
+    return my_date.isoformat()
+
+def appro_watchtime():
+    approwatchtime = datetime.now() + timedelta(seconds=time())
+    # print(approwatchtime)
     return approwatchtime.isoformat()
 
 # test print approximate watchtime
@@ -91,8 +123,8 @@ def googlecalapi():
     # custom dictonary value
 
     ev['summary'] = what_in_kodi()
-    ev['start']['dateTime'] = current_Time()
-    ev['end']['dateTime'] = appro_Watchtime()
+    ev['start']['dateTime'] = current_time()
+    ev['end']['dateTime'] = appro_watchtime()
 
     # ev = e + what_in_kodi()
 
